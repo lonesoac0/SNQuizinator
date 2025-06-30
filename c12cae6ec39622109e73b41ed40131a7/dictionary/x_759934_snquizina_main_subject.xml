@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?><database>
+    <element db_object_id="8fbc6eaec39622109e73b41ed4013158" label="Main Subject" max_length="40" name="x_759934_snquizina_main_subject" type="collection">
+        <element attributes="edge_encryption_enabled=true" display="true" label="Main Subject" max_length="40" name="main_subject" type="string"/>
+    </element>
+</database>

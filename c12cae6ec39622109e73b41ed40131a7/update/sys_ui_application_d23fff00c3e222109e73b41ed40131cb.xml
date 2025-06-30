@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update sys_domain="global" table="sys_ui_application">
+    <sys_ui_application action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <hint/>
+        <name>question_options</name>
+        <order/>
+        <roles>x_759934_snquizina.question_options_user</roles>
+        <sys_class_name>sys_ui_application</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2025-06-30 22:02:03</sys_created_on>
+        <sys_domain>global</sys_domain>
+        <sys_domain_path>/</sys_domain_path>
+        <sys_id>d23fff00c3e222109e73b41ed40131cb</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>question_options</sys_name>
+        <sys_overrides/>
+        <sys_package display_value="SNQuizinator" source="x_759934_snquizina">c12cae6ec39622109e73b41ed40131a7</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="SNQuizinator">c12cae6ec39622109e73b41ed40131a7</sys_scope>
+        <sys_update_name>sys_ui_application_d23fff00c3e222109e73b41ed40131cb</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2025-06-30 22:02:03</sys_updated_on>
+    </sys_ui_application>
+</record_update>

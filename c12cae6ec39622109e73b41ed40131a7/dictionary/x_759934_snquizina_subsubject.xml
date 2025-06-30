@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?><database>
+    <element db_object_id="fd0d266ac39622109e73b41ed4013167" label="SubSubject" max_length="40" name="x_759934_snquizina_subsubject" type="collection">
+        <element label="Main Subject" max_length="32" name="main_subject" reference="x_759934_snquizina_main_subject" type="reference"/>
+        <element display="true" label="SubSubject" max_length="255" name="subsubject" type="string"/>
+        <element function_definition="glidefunction:concat(sys_id)" function_field="true" label="SYS_ID Display" max_length="33" name="sys_id_display" read_only="true" type="string"/>
+        <index name="index">
+            <element name="main_subject"/>
+        </index>
+    </element>
+</database>

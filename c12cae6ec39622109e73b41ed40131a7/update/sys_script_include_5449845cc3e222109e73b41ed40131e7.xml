@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_script_include">
+    <sys_script_include action="INSERT_OR_UPDATE">
+        <access>package_private</access>
+        <active>true</active>
+        <api_name>x_759934_snquizina.RandomQuestionUtils</api_name>
+        <caller_access/>
+        <client_callable>false</client_callable>
+        <description/>
+        <mobile_callable>false</mobile_callable>
+        <name>RandomQuestionUtils</name>
+        <sandbox_callable>false</sandbox_callable>
+        <script><![CDATA[var RandomQuestionUtils = Class.create();
+RandomQuestionUtils.prototype = {
+    initialize: function() {},
+
+    getRandomQuestionWithOptions: function() {
+        var result = {};
+
+        // Count total questions
+        var countGr = new GlideAggregate('x_759934_snquizina_questions');
+        countGr.addAggregate('COUNT');
+        countGr.query();
+
+        if (!countGr.next()) {
+            result.error = "No questions found.";
+            return result;
+        }
+
+        var total = parseInt(countGr.getAggregate('COUNT'));
+        var offset = Math.floor(Math.random() * total);
+
+        // Select question at offset
+        var questionGr = new GlideRecord('x_759934_snquizina_questions');
+        questionGr.orderBy('sys_created_on');
+        questionGr.query();
+
+        var index = 0;
+        var selectedQuestion = null;
+
+        while (questionGr.next()) {
+            if (index === offset) {
+                selectedQuestion = questionGr;
+                break;
+            }
+            index++;
+        }
+
+        if (!selectedQuestion) {
+            result.error = "Failed to retrieve question.";
+            return result;
+        }
+
+        // Populate result with question
+        result.question = {
+            sys_id: selectedQuestion.getUniqueValue(),
+            text: selectedQuestion.getValue('question'),
+            explanation: selectedQuestion.getValue('answer_explaination'),
+            subcategory: selectedQuestion.getDisplayValue('subcategory')
+        };
+
+        // Get related options
+        result.options = [];
+        var optionGr = new GlideRecord('x_759934_snquizina_question_options');
+        optionGr.addQuery('question', selectedQuestion.getUniqueValue());
+        optionGr.query();
+
+        while (optionGr.next()) {
+            result.options.push({
+                text: optionGr.getValue('question_option'),
+                correct: optionGr.getValue('correct') === 'true'
+            });
+        }
+
+        return result;
+    },
+
+    type: 'RandomQuestionUtils'
+};
+]]></script>
+        <sys_class_name>sys_script_include</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2025-06-30 22:46:17</sys_created_on>
+        <sys_id>5449845cc3e222109e73b41ed40131e7</sys_id>
+        <sys_mod_count>1</sys_mod_count>
+        <sys_name>RandomQuestionUtils</sys_name>
+        <sys_package display_value="SNQuizinator" source="x_759934_snquizina">c12cae6ec39622109e73b41ed40131a7</sys_package>
+        <sys_policy>read</sys_policy>
+        <sys_scope display_value="SNQuizinator">c12cae6ec39622109e73b41ed40131a7</sys_scope>
+        <sys_update_name>sys_script_include_5449845cc3e222109e73b41ed40131e7</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2025-06-30 22:47:14</sys_updated_on>
+    </sys_script_include>
+    <sys_es_latest_script action="INSERT_OR_UPDATE">
+        <id>5449845cc3e222109e73b41ed40131e7</id>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2025-06-30 22:46:17</sys_created_on>
+        <sys_id>9659805cc3e222109e73b41ed4013196</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2025-06-30 22:46:17</sys_updated_on>
+        <table>sys_script_include</table>
+        <use_es_latest>true</use_es_latest>
+    </sys_es_latest_script>
+</record_update>

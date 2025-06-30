@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?><database>
+    <element db_object_id="692fbf00c3e222109e73b41ed401317f" label="question_options" max_length="40" name="x_759934_snquizina_question_options" type="collection">
+        <element label="Question option" max_length="40" name="question_option" type="string"/>
+        <element label="correct" max_length="40" name="correct" type="boolean"/>
+        <element label="Question" max_length="32" name="question" reference="x_759934_snquizina_questions" type="reference"/>
+        <index name="index">
+            <element name="question"/>
+        </index>
+    </element>
+</database>

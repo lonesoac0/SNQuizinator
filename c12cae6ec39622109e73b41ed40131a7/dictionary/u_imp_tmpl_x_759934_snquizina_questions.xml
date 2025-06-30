@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?><database>
+    <element db_object_id="58b7bbc4c3a222109e73b41ed4013144" extends="sys_import_set_row" label="Imp Tmpl X 759934 Snquizina Questions" max_length="40" name="u_imp_tmpl_x_759934_snquizina_questions" type="collection">
+        <element attributes="edge_encryption_enabled=true,import_attribute_name=Question" label="Question" max_length="8000" name="u_question" type="string"/>
+        <element attributes="edge_encryption_enabled=true,import_attribute_name=Answer Explaination" label="Answer Explaination" max_length="4000" name="u_answer_explaination" type="string"/>
+        <element attributes="edge_encryption_enabled=true,import_attribute_name=SubCategory" label="SubCategory" max_length="32" name="u_subcategory" type="string"/>
+    </element>
+</database>

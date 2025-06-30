@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update sys_domain="global" table="sys_app_module">
+    <sys_app_module action="DELETE">
+        <active>true</active>
+        <application display_value="System Import Sets">import_sets</application>
+        <assessment/>
+        <device_type/>
+        <filter/>
+        <hint/>
+        <homepage/>
+        <image/>
+        <link_type>LIST</link_type>
+        <map_page/>
+        <mobile_title>Imp Tmpl X 759934 Snquizina Questions</mobile_title>
+        <mobile_view_name>Mobile</mobile_view_name>
+        <name>u_imp_tmpl_x_759934_snquizina_questions</name>
+        <order>1100</order>
+        <override_menu_roles>false</override_menu_roles>
+        <query/>
+        <report/>
+        <require_confirmation>true</require_confirmation>
+        <roles/>
+        <sys_class_name>sys_app_module</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2025-06-30 21:26:34</sys_created_on>
+        <sys_domain>global</sys_domain>
+        <sys_domain_path>/</sys_domain_path>
+        <sys_id>66173f84c3a222109e73b41ed4013124</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>Imp Tmpl X 759934 Snquizina Questions</sys_name>
+        <sys_overrides/>
+        <sys_package display_value="SNQuizinator" source="x_759934_snquizina">c12cae6ec39622109e73b41ed40131a7</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="SNQuizinator">c12cae6ec39622109e73b41ed40131a7</sys_scope>
+        <sys_update_name>sys_app_module_66173f84c3a222109e73b41ed4013124</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2025-06-30 21:26:34</sys_updated_on>
+        <timeline_page/>
+        <title>Imp Tmpl X 759934 Snquizina Questions</title>
+        <uncancelable>false</uncancelable>
+        <view_name/>
+        <window_name/>
+    </sys_app_module>
+    <sys_update_version action="INSERT_OR_UPDATE">
+        <action>DELETE</action>
+        <application display_value="SNQuizinator">c12cae6ec39622109e73b41ed40131a7</application>
+        <file_path/>
+        <instance_id>ddc614a3fbdbded4843df4344eefdcb7</instance_id>
+        <instance_name>dev293771</instance_name>
+        <name>sys_app_module_66173f84c3a222109e73b41ed4013124</name>
+        <payload><![CDATA[<?xml version="1.0" encoding="UTF-8"?><record_update sys_domain="global" table="sys_app_module"><sys_app_module action="INSERT_OR_UPDATE"><active>true</active><application display_value="System Import Sets">import_sets</application><assessment/><device_type/><filter/><hint/><homepage/><image/><link_type>LIST</link_type><map_page/><mobile_title>Imp Tmpl X 759934 Snquizina Questions</mobile_title><mobile_view_name>Mobile</mobile_view_name><name>u_imp_tmpl_x_759934_snquizina_questions</name><order>1100</order><override_menu_roles>false</override_menu_roles><query/><report/><require_confirmation>true</require_confirmation><roles/><sys_class_name>sys_app_module</sys_class_name><sys_created_by>admin</sys_created_by><sys_created_on>2025-06-30 21:26:34</sys_created_on><sys_domain>global</sys_domain><sys_domain_path>/</sys_domain_path><sys_id>66173f84c3a222109e73b41ed4013124</sys_id><sys_mod_count>0</sys_mod_count><sys_name>Imp Tmpl X 759934 Snquizina Questions</sys_name><sys_overrides/><sys_package display_value="SNQuizinator" source="x_759934_snquizina">c12cae6ec39622109e73b41ed40131a7</sys_package><sys_policy/><sys_scope display_value="SNQuizinator">c12cae6ec39622109e73b41ed40131a7</sys_scope><sys_update_name>sys_app_module_66173f84c3a222109e73b41ed4013124</sys_update_name><sys_updated_by>admin</sys_updated_by><sys_updated_on>2025-06-30 21:26:34</sys_updated_on><timeline_page/><title>Imp Tmpl X 759934 Snquizina Questions</title><uncancelable>false</uncancelable><view_name/><window_name/></sys_app_module></record_update>]]></payload>
+        <payload_hash>2091130327</payload_hash>
+        <record_name>Imp Tmpl X 759934 Snquizina Questions</record_name>
+        <reverted_from/>
+        <source>852cae6ec39622109e73b41ed40131a9</source>
+        <source_table>sys_update_set</source_table>
+        <state>previous</state>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2025-06-30 21:26:34</sys_created_on>
+        <sys_id>ee173f84c3a222109e73b41ed4013126</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_recorded_at>197c2bc10830000001</sys_recorded_at>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2025-06-30 21:26:34</sys_updated_on>
+        <type>Module</type>
+        <update_guid>a2173f8452a22210f6bfc5d53026ed26</update_guid>
+        <update_guid_history>a2173f8452a22210f6bfc5d53026ed26:2091130327</update_guid_history>
+    </sys_update_version>
+    <sys_metadata_delete action="INSERT_OR_UPDATE">
+        <sys_audit_delete display_value="Imp Tmpl X 759934 Snquizina Questions">577737c4c3a222109e73b41ed4013190</sys_audit_delete>
+        <sys_class_name>sys_metadata_delete</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2025-06-30 21:28:16</sys_created_on>
+        <sys_db_object display_value="" name="sys_app_module">sys_app_module</sys_db_object>
+        <sys_id>1fa80ec473d94d659698c807396272d1</sys_id>
+        <sys_metadata>66173f84c3a222109e73b41ed4013124</sys_metadata>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>Imp Tmpl X 759934 Snquizina Questions</sys_name>
+        <sys_package display_value="SNQuizinator" source="x_759934_snquizina">c12cae6ec39622109e73b41ed40131a7</sys_package>
+        <sys_parent/>
+        <sys_policy/>
+        <sys_scope display_value="SNQuizinator">c12cae6ec39622109e73b41ed40131a7</sys_scope>
+        <sys_scope_delete display_value="">3b498cfdba8e40b19a2c63b7a4b54901</sys_scope_delete>
+        <sys_update_name>sys_app_module_66173f84c3a222109e73b41ed4013124</sys_update_name>
+        <sys_update_version display_value="sys_app_module_66173f84c3a222109e73b41ed4013124">ee173f84c3a222109e73b41ed4013126</sys_update_version>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2025-06-30 21:28:16</sys_updated_on>
+    </sys_metadata_delete>
+</record_update>

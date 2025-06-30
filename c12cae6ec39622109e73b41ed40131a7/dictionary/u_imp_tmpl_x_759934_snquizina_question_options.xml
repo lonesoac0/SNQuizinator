@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?><database>
+    <element db_object_id="bd778c98c3e222109e73b41ed401317a" extends="sys_import_set_row" label="Imp Tmpl X 759934 Snquizina Question Options" max_length="40" name="u_imp_tmpl_x_759934_snquizina_question_options" type="collection">
+        <element attributes="edge_encryption_enabled=true,import_attribute_name=Correct" label="Correct" max_length="40" name="u_correct" type="string"/>
+        <element attributes="edge_encryption_enabled=true,import_attribute_name=Question option" label="Question option" max_length="40" name="u_question_option" type="string"/>
+        <element attributes="edge_encryption_enabled=true,import_attribute_name=Question" label="Question" max_length="32" name="u_question" type="string"/>
+    </element>
+</database>
