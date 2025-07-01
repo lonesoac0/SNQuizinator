@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?><database>
+    <element db_object_id="2f2b139cc3e262109e73b41ed401312e" label="GeneratedQuiz" max_length="40" name="x_759934_snquizina_generatedquiz" type="collection">
+        <element label="RandomlySelectedQuestions" max_length="4000" name="randomlyselectedquestions" reference="x_759934_snquizina_questions" type="glide_list"/>
+        <element default="javascript:getNextObjNumberPadded();" dynamic_default_value="fdcb83a85f220100a9ad2572f2b4773c" label="QuizNumber" max_length="255" name="number" read_only="true" type="string" use_dynamic_default="true"/>
+    </element>
+</database>
