@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_script_include">
+    <sys_script_include action="INSERT_OR_UPDATE">
+        <access>package_private</access>
+        <active>true</active>
+        <api_name>x_759934_snquizina.SNQuizinator_SelectQuestions</api_name>
+        <caller_access/>
+        <client_callable>false</client_callable>
+        <description/>
+        <mobile_callable>false</mobile_callable>
+        <name>SNQuizinator_SelectQuestions</name>
+        <sandbox_callable>false</sandbox_callable>
+        <script><![CDATA[var SNQuizinator_SelectQuestions = Class.create();
+SNQuizinator_SelectQuestions.prototype = {
+    initialize: function() {},
+
+    // Main function to select 60 questions based on blueprint percentages
+    selectQuestions: function() {
+        // Blueprint structure: main_subject -> percentage
+        var blueprint = [
+            { name: "Designing and Creating an Application", percent: 20 },
+            { name: "Application User Interface", percent: 20 },
+            { name: "Security and Restricting Access", percent: 20 },
+            { name: "Application Automation", percent: 20 },
+            { name: "Working with External Data", percent: 10 },
+            { name: "Managing Applications", percent: 10 }
+        ];
+
+        var totalQuestions = 60;
+        var questionsPerSubject = {};
+
+        // Calculate number of questions per subject
+        var totalAssigned = 0;
+        for (var i = 0; i < blueprint.length; i++) {
+            var count = Math.round((blueprint[i].percent / 100) * totalQuestions);
+            questionsPerSubject[blueprint[i].name] = count;
+            totalAssigned += count;
+        }
+
+        // Adjust for rounding errors to ensure exactly 60 questions
+        while (totalAssigned > totalQuestions) {
+            for (var j = 0; j < blueprint.length && totalAssigned > totalQuestions; j++) {
+                if (questionsPerSubject[blueprint[j].name] > 0) {
+                    questionsPerSubject[blueprint[j].name]--;
+                    totalAssigned--;
+                }
+            }
+        }
+        while (totalAssigned < totalQuestions) {
+            for (var k = 0; k < blueprint.length && totalAssigned < totalQuestions; k++) {
+                questionsPerSubject[blueprint[k].name]++;
+                totalAssigned++;
+            }
+        }
+
+        // Map main subject names to sys_id
+        var subjectSysIds = {};
+        var msGR = new GlideRecord('x_759934_snquizina_main_subject');
+        msGR.query();
+        while (msGR.next()) {
+            subjectSysIds[msGR.main_subject.toString()] = msGR.sys_id.toString();
+        }
+
+        // Select questions for each subject
+        var selectedQuestions = [];
+        for (var subject in questionsPerSubject) {
+            var subjectId = subjectSysIds[subject];
+            if (!subjectId) continue;
+
+            // Get all subsubjects for this main subject
+            var subIds = [];
+            var subGR = new GlideRecord('x_759934_snquizina_subsubject');
+            subGR.addQuery('main_subject', subjectId);
+            subGR.query();
+            while (subGR.next()) {
+                subIds.push(subGR.sys_id.toString());
+            }
+
+            // Get all questions for these subsubjects
+            var qGR = new GlideRecord('x_759934_snquizina_questions');
+            qGR.addQuery('subcategory', 'IN', subIds.join(','));
+            qGR.query();
+            var questionIds = [];
+            while (qGR.next()) {
+                questionIds.push(qGR.sys_id.toString());
+            }
+
+            // Randomly select the required number of questions
+            var count = questionsPerSubject[subject];
+            var shuffled = this._shuffleArray(questionIds);
+            for (var n = 0; n < count && n < shuffled.length; n++) {
+                selectedQuestions.push(shuffled[n]);
+            }
+        }
+
+        return selectedQuestions; // Array of question sys_ids
+    },
+
+    // Fisher-Yates shuffle
+    _shuffleArray: function(array) {
+        for (var i = array.length - 1; i > 0; i--) {
+            var j = Math.floor(Math.random() * (i + 1));
+            var temp = array[i];
+            array[i] = array[j];
+            array[j] = temp;
+        }
+        return array;
+    },
+
+    type: 'SNQuizinator_SelectQuestions'
+};]]></script>
+        <sys_class_name>sys_script_include</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2025-07-01 15:13:22</sys_created_on>
+        <sys_id>920b6750c36662109e73b41ed4013172</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>SNQuizinator_SelectQuestions</sys_name>
+        <sys_package display_value="SNQuizinator" source="x_759934_snquizina">c12cae6ec39622109e73b41ed40131a7</sys_package>
+        <sys_policy>read</sys_policy>
+        <sys_scope display_value="SNQuizinator">c12cae6ec39622109e73b41ed40131a7</sys_scope>
+        <sys_update_name>sys_script_include_920b6750c36662109e73b41ed4013172</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2025-07-01 15:13:22</sys_updated_on>
+    </sys_script_include>
+    <sys_es_latest_script action="INSERT_OR_UPDATE">
+        <id>920b6750c36662109e73b41ed4013172</id>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2025-07-01 15:13:21</sys_created_on>
+        <sys_id>194b235cc32662109e73b41ed401310a</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2025-07-01 15:13:21</sys_updated_on>
+        <table>sys_script_include</table>
+        <use_es_latest>true</use_es_latest>
+    </sys_es_latest_script>
+</record_update>
