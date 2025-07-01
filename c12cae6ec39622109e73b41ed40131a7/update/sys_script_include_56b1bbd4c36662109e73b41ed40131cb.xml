@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_script_include">
+    <sys_script_include action="INSERT_OR_UPDATE">
+        <access>package_private</access>
+        <active>true</active>
+        <api_name>x_759934_snquizina.SNQuizinator_VerifyGeneratedQuiz</api_name>
+        <caller_access/>
+        <client_callable>false</client_callable>
+        <description/>
+        <mobile_callable>false</mobile_callable>
+        <name>SNQuizinator_VerifyGeneratedQuiz</name>
+        <sandbox_callable>false</sandbox_callable>
+        <script><![CDATA[var SNQuizinator_VerifyGeneratedQuiz = Class.create();
+SNQuizinator_VerifyGeneratedQuiz.prototype = {
+    initialize: function() {},
+
+    /**
+     * Verifies that the questions in a generated quiz record
+     * can be grouped by their Main Subjects and match the expected percentages.
+     * @param {String} quizSysId - sys_id of the generated quiz record
+     * @return {Object} - { total: Number, by_subject: {subject: count, ...}, expected: {subject: expectedCount, ...}, valid: Boolean }
+     */
+    verifyQuiz: function(quizSysId) {
+        // Blueprint structure
+        var blueprint = [
+            { name: "Designing and Creating an Application", percent: 20 },
+            { name: "Application User Interface", percent: 20 },
+            { name: "Security and Restricting Access", percent: 20 },
+            { name: "Application Automation", percent: 20 },
+            { name: "Working with External Data", percent: 10 },
+            { name: "Managing Applications", percent: 10 }
+        ];
+        var totalQuestions = 60;
+
+        // Get the quiz record
+        var quizGR = new GlideRecord('x_759934_snquizina_generatedquiz');
+        if (!quizGR.get(quizSysId)) {
+            return { error: 'Quiz record not found', valid: false };
+        }
+        var questionIds = quizGR.randomlyselectedquestions.split(',');
+
+        // Map subcategory sys_id to main subject sys_id
+        var subToMain = {};
+        var subGR = new GlideRecord('x_759934_snquizina_subsubject');
+        subGR.query();
+        while (subGR.next()) {
+            subToMain[subGR.sys_id.toString()] = subGR.main_subject.toString();
+        }
+
+        // Map main subject sys_id to name
+        var mainIdToName = {};
+        var mainGR = new GlideRecord('x_759934_snquizina_main_subject');
+        mainGR.query();
+        while (mainGR.next()) {
+            mainIdToName[mainGR.sys_id.toString()] = mainGR.main_subject.toString();
+        }
+
+        // Count questions per main subject
+        var bySubject = {};
+        for (var i = 0; i < questionIds.length; i++) {
+            var qGR = new GlideRecord('x_759934_snquizina_questions');
+            if (!qGR.get(questionIds[i])) continue;
+            var subId = qGR.subcategory.toString();
+            var mainId = subToMain[subId];
+            var mainName = mainIdToName[mainId] || 'Unknown';
+            bySubject[mainName] = (bySubject[mainName] || 0) + 1;
+        }
+
+        // Calculate expected counts
+        var expected = {};
+        var totalAssigned = 0;
+        for (var j = 0; j < blueprint.length; j++) {
+            var count = Math.round((blueprint[j].percent / 100) * totalQuestions);
+            expected[blueprint[j].name] = count;
+            totalAssigned += count;
+        }
+        // Adjust for rounding
+        while (totalAssigned > totalQuestions) {
+            for (var k = 0; k < blueprint.length && totalAssigned > totalQuestions; k++) {
+                if (expected[blueprint[k].name] > 0) {
+                    expected[blueprint[k].name]--;
+                    totalAssigned--;
+                }
+            }
+        }
+        while (totalAssigned < totalQuestions) {
+            for (var l = 0; l < blueprint.length && totalAssigned < totalQuestions; l++) {
+                expected[blueprint[l].name]++;
+                totalAssigned++;
+            }
+        }
+
+        // Validate
+        var valid = true;
+        for (var m = 0; m < blueprint.length; m++) {
+            var subj = blueprint[m].name;
+            if ((bySubject[subj] || 0) !== expected[subj]) {
+                valid = false;
+                break;
+            }
+        }
+
+        return {
+            total: questionIds.length,
+            by_subject: bySubject,
+            expected: expected,
+            valid: valid
+        };
+    },
+
+    type: 'SNQuizinator_VerifyGeneratedQuiz'
+};]]></script>
+        <sys_class_name>sys_script_include</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2025-07-01 15:42:00</sys_created_on>
+        <sys_id>56b1bbd4c36662109e73b41ed40131cb</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>SNQuizinator_VerifyGeneratedQuiz</sys_name>
+        <sys_package display_value="SNQuizinator" source="x_759934_snquizina">c12cae6ec39622109e73b41ed40131a7</sys_package>
+        <sys_policy>read</sys_policy>
+        <sys_scope display_value="SNQuizinator">c12cae6ec39622109e73b41ed40131a7</sys_scope>
+        <sys_update_name>sys_script_include_56b1bbd4c36662109e73b41ed40131cb</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2025-07-01 15:42:00</sys_updated_on>
+    </sys_script_include>
+    <sys_es_latest_script action="INSERT_OR_UPDATE">
+        <id>56b1bbd4c36662109e73b41ed40131cb</id>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2025-07-01 15:42:00</sys_created_on>
+        <sys_id>01d17794c36662109e73b41ed4013124</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2025-07-01 15:42:00</sys_updated_on>
+        <table>sys_script_include</table>
+        <use_es_latest>true</use_es_latest>
+    </sys_es_latest_script>
+</record_update>
